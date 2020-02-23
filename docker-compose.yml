@@ -18,9 +18,21 @@ services:
     build:
       context: ./
     command: ["flask", "run", "--port", "8080", "--host", "0.0.0.0"]
+    depends_on:
+      - rabbitmq
     environment:
-      FLASK_APP: waldorf/server
+      FLASK_APP: server
     healthcheck:
       test: ["CMD-SHELL", "wget http://localhost:8080/ping || exit 1"]
     ports:
       - 8080:8080
+  worker:
+    build:
+      context: ./
+    command: ["celery", "worker", "--app", "tasks", "--loglevel", "info"]
+    depends_on:
+      - rabbitmq
+    environment:
+      BROKER_URL: amqp://waldorf:pass@rabbitmq/waldorf
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep python || exit 1"]

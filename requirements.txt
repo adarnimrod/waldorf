@@ -1,2 +1,2 @@
-celery[librabbitmq]>=4.4
+celery[py-amqp]>=4.4
 flask>=1.1
