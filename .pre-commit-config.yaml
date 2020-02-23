@@ -25,7 +25,6 @@ repos:
     rev: 19.10b0
     hooks:
       - id: black
-        exclude: &excluded_pythonscripts pythonrc.py|rabbitmqadmin
         args:
           - |
               --line-length=79
@@ -33,7 +32,6 @@ repos:
     rev: 3.7.9
     hooks:
       - id: flake8
-        exclude: *excluded_pythonscripts
         args:
           - |-
             --max-line-length=79
@@ -43,10 +41,9 @@ repos:
     rev: v2.4.4
     hooks:
       - id: pylint
-        exclude: *excluded_pythonscripts
         args:
           - |-
-            --disable=R0801
+            --disable=R0801,E0401
   - repo: https://www.shore.co.il/git/docker-pre-commit
     rev: v0.3.0
     hooks:
