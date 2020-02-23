@@ -1,0 +1,17 @@
+# vim:ff=unix:ts=2:sw=2:ai:expandtab
+---
+version: '3.5'
+services:
+  rabbitmq:
+    environment:
+      RABBITMQ_DEFAULT_USER: waldorf
+      RABBITMQ_DEFAULT_PASS: pass
+      RABBITMQ_DEFAULT_VHOST: waldorf
+      RABBITMQ_NODENAME: &rabbitmq_hostname rabbitmq
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmqctl status || exit 1"]
+    hostname: *rabbitmq_hostname
+    image: rabbitmq:3.8-management-alpine
+    ports:
+      - 15672:15672
+
