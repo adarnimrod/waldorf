@@ -21,7 +21,9 @@ services:
     depends_on:
       - rabbitmq
     environment:
+      BROKER_URL: &broker_url amqp://waldorf:pass@rabbitmq/waldorf
       FLASK_APP: server
+      FLASK_ENV: development
     healthcheck:
       test: ["CMD-SHELL", "wget http://localhost:8080/ping || exit 1"]
     ports:
@@ -33,6 +35,6 @@ services:
     depends_on:
       - rabbitmq
     environment:
-      BROKER_URL: amqp://waldorf:pass@rabbitmq/waldorf
+      BROKER_URL: *broker_url
     healthcheck:
       test: ["CMD-SHELL", "pgrep python || exit 1"]
