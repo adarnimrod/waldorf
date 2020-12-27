@@ -1,6 +1,10 @@
 Waldorf
 =======
 
+.. image:: https://git.shore.co.il/nimrod/waldorf/badges/master/pipeline.svg
+    :target: https://git.shore.co.il/nimrod/waldorf/-/commits/master
+    :alt: pipeline status
+
 A Flask and Celery demo app.
 
 Requirements
