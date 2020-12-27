@@ -21,7 +21,8 @@ services:
     depends_on:
       - rabbitmq
     environment:
-      BROKER_URL: &broker_url amqp://waldorf:pass@rabbitmq/waldorf
+      # yamllint disable-line rule:line-length
+      BROKER_URL: &broker_url amqp://waldorf:pass@rabbitmq/waldorf  # pragma: allowlist secret
       FLASK_APP: server
       FLASK_ENV: development
     healthcheck:

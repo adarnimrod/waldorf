@@ -1,5 +1,5 @@
 """Dummy web server using Flask."""
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify  # pylint: disable=import-error
 import tasks
 
 app = Flask(__name__)  # pylint: disable=invalid-name
